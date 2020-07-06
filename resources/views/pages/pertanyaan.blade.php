@@ -26,13 +26,12 @@
         <thead>
         <tr>
           <th>No.</th>
-          {{-- <th>Judul</th> --}}
           <th>Pertanyaan</th>
-          {{-- <th>Tanggal Dibuat</th>
-          <th>Tanggal Diperbarui</th> --}}
+          <th>Judul</th>
           <th>Lihat Jawaban</th>
           <th>Form Jawaban</th>
           <th>Detail QnA</th>
+          <th>Delete Pertanyaan</th>
         </tr>
         </thead>
         <tbody>
@@ -40,6 +39,11 @@
         <tr>
           <td>{{ $loop->iteration }}</td>
           <td>{{ $pertanyaan->isi }}</td>
+          <td>
+            <a href="{{ url('/pertanyaan/'.$pertanyaan->id.'/edit') }}">
+              <button type="submit" class="btn btn-warning">Edit Pertanyaan</button>
+            </a>
+          </td>
           <td>
             <a href="{{ url('/jawaban/'.$pertanyaan->id) }}">
               <button type="submit" class="btn btn-success">Lihat Jawaban</button>
@@ -59,6 +63,13 @@
             <a href="{{ url('/pertanyaan/'.$pertanyaan->id) }}">
               <button class="btn btn-primary">Lihat QnA</button>
             </a>
+          </td>
+          <td>
+            <form action="{{ url('/pertanyaan/'.$pertanyaan->id) }}" method="POST">
+              @csrf
+              {{ method_field('delete') }}
+              <button type="submit" class="btn btn-danger">Delete Pertanyaan</button>
+            </form>
           </td>
         </tr>
         @endforeach

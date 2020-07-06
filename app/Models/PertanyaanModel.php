@@ -22,4 +22,16 @@ class PertanyaanModel
         $item = DB::table('pertanyaans')->where('id', $id)->first();
         return $item;
     }
+
+    public static function update($data)
+    {
+        $update_item = DB::table('pertanyaans')->where('id', $data['id'])->update($data);
+        return $update_item;
+    }
+
+    public static function delete($id)
+    {
+        DB::table('pertanyaans')->where('id', $id)->delete();
+        return 'deleted';
+    }
 }
